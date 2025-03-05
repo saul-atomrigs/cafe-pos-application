@@ -2,7 +2,7 @@ import { Button, Loading } from '@saul-atomrigs/design-system';
 import { AsyncBoundary } from '@toss/async-boundary';
 import { type MenuItem } from '~/remotes';
 import { ErrorFallback } from './error-fallback';
-import useMenu from './hooks';
+import { useMenu } from './hooks';
 
 export default function MenuPage() {
   return (

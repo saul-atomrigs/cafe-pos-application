@@ -3,7 +3,7 @@ import { type MenuItem, getMenuAPI } from '~/remotes';
 
 export const menuQueryKey = ['menu'];
 
-export default function useMenu() {
+export function useMenu() {
   const { data: menuItems } = useSuspenseQuery<MenuItem[]>({
     queryKey: menuQueryKey,
     queryFn: getMenuAPI,

@@ -1,5 +1,6 @@
 import { useMenu } from './hooks';
 import { MenuItemCard } from './item';
+import { Box, Txt } from '@saul-atomrigs/design-system';
 
 export function MenuContent() {
   const { getBeverages, getDesserts } = useMenu();
@@ -9,49 +10,41 @@ export function MenuContent() {
   return (
     <div>
       <section style={{ marginBottom: '2rem' }}>
-        <h2
-          style={{
-            fontSize: '1.5rem',
-            fontWeight: '600',
-            marginBottom: '1rem',
-          }}
-        >
+        <Txt size='2xl' weight='semibold' style={{ marginBottom: '1rem' }}>
           Beverages
-        </h2>
-        <div
+        </Txt>
+        <Box
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             gap: '1rem',
+            boxShadow: 'none',
+            padding: 0,
           }}
         >
           {beverages.map((item) => (
             <MenuItemCard key={item.id} item={item} />
           ))}
-        </div>
+        </Box>
       </section>
 
       <section style={{ marginBottom: '2rem' }}>
-        <h2
-          style={{
-            fontSize: '1.5rem',
-            fontWeight: '600',
-            marginBottom: '1rem',
-          }}
-        >
+        <Txt size='2xl' weight='semibold' style={{ marginBottom: '1rem' }}>
           Desserts
-        </h2>
-        <div
+        </Txt>
+        <Box
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             gap: '1rem',
+            boxShadow: 'none',
+            padding: 0,
           }}
         >
           {desserts.map((item) => (
             <MenuItemCard key={item.id} item={item} />
           ))}
-        </div>
+        </Box>
       </section>
     </div>
   );

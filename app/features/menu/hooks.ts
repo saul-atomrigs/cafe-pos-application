@@ -11,15 +11,17 @@ export function useMenu() {
 
   const getBeverages = () =>
     menuItems.filter((item) => item.category === 'beverage');
+  const beverages = getBeverages();
   const getDesserts = () =>
     menuItems.filter((item) => item.category === 'dessert');
+  const desserts = getDesserts();
 
   const getMenuItem = (id: string) => menuItems.find((item) => item.id === id);
 
   return {
     menuItems,
-    getBeverages,
-    getDesserts,
+    beverages,
+    desserts,
     getMenuItem,
   };
 }

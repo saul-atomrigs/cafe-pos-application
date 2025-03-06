@@ -3,9 +3,7 @@ import { useMenu } from './hooks';
 import { MenuItemCard } from './item';
 
 export function MenuContent() {
-  const { getBeverages, getDesserts } = useMenu();
-  const beverages = getBeverages();
-  const desserts = getDesserts();
+  const { beverages, desserts } = useMenu();
 
   return (
     <>

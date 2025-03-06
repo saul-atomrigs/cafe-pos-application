@@ -1,11 +1,7 @@
 import { Box, Txt } from '@saul-atomrigs/design-system';
 import type { MenuItem } from '~/remotes';
 
-export interface MenuItemCardProps {
-  item: MenuItem;
-}
-
-export function MenuItemCard({ item }: MenuItemCardProps) {
+export function MenuItemCard(item: MenuItem) {
   return (
     <Box
       style={{

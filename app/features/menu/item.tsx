@@ -1,3 +1,4 @@
+import { Box, Txt } from '@saul-atomrigs/design-system';
 import type { MenuItem } from '~/remotes';
 
 export interface MenuItemCardProps {
@@ -6,19 +7,16 @@ export interface MenuItemCardProps {
 
 export function MenuItemCard({ item }: MenuItemCardProps) {
   return (
-    <div
+    <Box
       style={{
-        border: '1px solid #e2e8f0',
-        borderRadius: '0.5rem',
         overflow: 'hidden',
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-        transition: 'box-shadow 0.3s ease',
+        padding: '0',
       }}
     >
-      {item.imageUrl && (
+      {item.image && (
         <div style={{ position: 'relative', height: '192px', width: '100%' }}>
           <img
-            src={item.imageUrl}
+            src={item.image}
             alt={item.name}
             style={{
               width: '100%',
@@ -29,11 +27,13 @@ export function MenuItemCard({ item }: MenuItemCardProps) {
         </div>
       )}
       <div style={{ padding: '1rem' }}>
-        <h3 style={{ fontWeight: '500', fontSize: '1.125rem' }}>{item.name}</h3>
-        <p style={{ color: '#4a5568', marginTop: '0.5rem' }}>
+        <Txt weight='medium' size='lg'>
+          {item.name}
+        </Txt>
+        <Txt size='base' style={{ color: '#4a5568', marginTop: '0.5rem' }}>
           ${item.price.toFixed(2)}
-        </p>
+        </Txt>
       </div>
-    </div>
+    </Box>
   );
 }

@@ -1,8 +1,8 @@
 import { Box, Txt } from '@saul-atomrigs/design-system';
 import { useMenu } from './hooks';
-import { MenuItemCard } from './item';
+import { Item } from './item';
 
-export function MenuContent() {
+export function List() {
   const { beverages, desserts } = useMenu();
 
   return (
@@ -20,7 +20,7 @@ export function MenuContent() {
         }}
       >
         {beverages.map((item) => (
-          <MenuItemCard key={item.id} item={item} />
+          <Item key={item.id} item={item} />
         ))}
       </Box>
 
@@ -37,7 +37,7 @@ export function MenuContent() {
         }}
       >
         {desserts.map((item) => (
-          <MenuItemCard key={item.id} item={item} />
+          <Item key={item.id} item={item} />
         ))}
       </Box>
     </>

@@ -1,34 +1,20 @@
 import { Box, Txt } from '@saul-atomrigs/design-system';
 import type { MenuItem } from '~/remotes';
+import './styles.css';
 
 export function Item({ item }: { item: MenuItem }) {
   return (
-    <Box
-      style={{
-        overflow: 'hidden',
-        padding: '0',
-      }}
-    >
+    <Box>
       {item.image && (
-        <div style={{ position: 'relative', height: '192px', width: '100%' }}>
-          <img
-            src={item.image}
-            alt={item.name}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
-          />
+        <div className='menuItem__imageContainer'>
+          <img src={item.image} alt={item.name} className='menuItem__image' />
         </div>
       )}
-      <div style={{ padding: '1rem' }}>
+      <div className='menuItem__content'>
         <Txt weight='medium' size='lg'>
           {item.name}
         </Txt>
-        <Txt size='base' style={{ color: '#4a5568', marginTop: '0.5rem' }}>
-          {item.price}원
-        </Txt>
+        <Txt size='base'>{item.price}원</Txt>
       </div>
     </Box>
   );

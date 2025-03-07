@@ -1,6 +1,6 @@
 import { Box, Txt } from '@saul-atomrigs/design-system';
 import type { MenuItem } from '~/remotes';
-import './styles.css';
+import '../styles.css';
 
 export function Item({ item }: { item: MenuItem }) {
   const { name, price, image } = item;

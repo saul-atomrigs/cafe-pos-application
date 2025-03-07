@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { useCallback } from 'react';
 import { type MenuItem, getMenuAPI } from '~/remotes';
 
 export const menuQueryKey = ['menu'];
@@ -9,14 +10,13 @@ export function useMenu() {
     queryFn: getMenuAPI,
   });
 
-  const getBeverages = () =>
-    menuItems.filter((item) => item.category === 'beverage');
-  const beverages = getBeverages();
-  const getDesserts = () =>
-    menuItems.filter((item) => item.category === 'dessert');
-  const desserts = getDesserts();
+  const beverages = menuItems.filter((item) => item.category === 'beverage');
+  const desserts = menuItems.filter((item) => item.category === 'dessert');
 
-  const getMenuItem = (id: string) => menuItems.find((item) => item.id === id);
+  const getMenuItem = useCallback(
+    (id: string) => menuItems.find((item) => item.id === id),
+    [menuItems]
+  );
 
   return {
     menuItems,

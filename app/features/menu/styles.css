@@ -11,10 +11,61 @@
 }
 
 .menuItem__content {
+  width: 100%;
   padding: 1rem;
 }
 
 .menuItem__price {
   color: #4a5568;
   margin-top: 0.5rem;
+}
+
+.menuItem__topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.menuItem__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menuItem__price {
+  color: #4a5568;
+}
+
+.menuItem__amountControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menuItem__amountButton {
+  min-width: 32px !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+}
+
+.menuItem__amountButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.menuItem__amountButton:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.menuItem__amountText {
+  min-width: 20px;
+  text-align: center;
 }

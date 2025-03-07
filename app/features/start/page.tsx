@@ -1,5 +1,6 @@
 import { CTAButton, Txt } from '@saul-atomrigs/design-system';
 import { useNavigate } from 'react-router';
+import { ROUTES } from '~/routes';
 
 export default function StartPage() {
   const navigate = useNavigate();
@@ -10,7 +11,9 @@ export default function StartPage() {
         POS에 오신걸 환영합니다
       </Txt>
 
-      <CTAButton onClick={() => navigate('/menu')}>메뉴로 이동하기</CTAButton>
+      <CTAButton onClick={() => navigate(ROUTES.MENU)}>
+        메뉴로 이동하기
+      </CTAButton>
     </div>
   );
 }

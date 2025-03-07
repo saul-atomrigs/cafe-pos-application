@@ -1,28 +1,10 @@
-import { Box, Txt, Button } from '@saul-atomrigs/design-system';
+import { Box, Txt } from '@saul-atomrigs/design-system';
+import OrderAmountInput from '~/features/cart/ui/order-amount-input';
 import type { MenuItem } from '~/remotes';
-import { useCartContext } from '~/features/cart/context';
 import '../styles.css';
 
 export function Item({ item }: { item: MenuItem }) {
   const { name, price, image } = item;
-  const { cartItems, addToCart, updateQuantity } = useCartContext();
-
-  const cartItem = cartItems.find((cartItem) => cartItem.item.id === item.id);
-  const amount = cartItem ? cartItem.quantity : 0;
-
-  const handleIncrement = () => {
-    if (amount === 0) {
-      addToCart(item, 1);
-    } else {
-      updateQuantity(item.id, amount + 1);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (amount > 0) {
-      updateQuantity(item.id, amount - 1);
-    }
-  };
 
   return (
     <Box>
@@ -40,17 +22,7 @@ export function Item({ item }: { item: MenuItem }) {
             <Txt size='base'>{price}원</Txt>
           </div>
           <div className='menuItem__amountControl'>
-            <Button
-              variant='secondary'
-              onClick={handleDecrement}
-              disabled={amount === 0}
-            >
-              -
-            </Button>
-            <Txt size='base'>{amount}</Txt>
-            <Button variant='primary' onClick={handleIncrement}>
-              +
-            </Button>
+            <OrderAmountInput item={item} />
           </div>
         </div>
       </div>

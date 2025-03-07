@@ -8,8 +8,9 @@ export default function MenuPage() {
       rejectedFallback={() => <Error message='메뉴를 불러오지 못했습니다' />}
       pendingFallback={<Loading message='메뉴를 불러오고 있습니다' />}
     >
-      <Button onClick={() => console.log('clicked')}>Click me</Button>
-      <MenuContent />
+      <div className='container'>
+        <MenuContent />
+      </div>
     </AsyncBoundary>
   );
 }

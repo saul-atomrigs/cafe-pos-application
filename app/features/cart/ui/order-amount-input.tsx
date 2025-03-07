@@ -30,7 +30,9 @@ export default function OrderAmountInput({ item }: { item: MenuItem }) {
       >
         -
       </Button>
-      <Txt size='base'>{amount}</Txt>
+      <Txt size='xl' weight='bold'>
+        {amount}
+      </Txt>
       <Button variant='primary' onClick={handleIncrement}>
         +
       </Button>

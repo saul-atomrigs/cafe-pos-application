@@ -10,6 +10,7 @@ import {
 import type { Route } from './+types/root';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MockProvider } from './mocks/context';
+import { CartProvider } from '~/features/cart/context';
 import './app.css';
 
 const queryClient = new QueryClient({
@@ -56,7 +57,9 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <MockProvider>
-        <Outlet />
+        <CartProvider>
+          <Outlet />
+        </CartProvider>
       </MockProvider>
     </QueryClientProvider>
   );

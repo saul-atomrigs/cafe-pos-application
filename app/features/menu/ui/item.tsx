@@ -1,14 +1,28 @@
 import { Box, Txt, Button } from '@saul-atomrigs/design-system';
-import { useState } from 'react';
 import type { MenuItem } from '~/remotes';
+import { useCartContext } from '~/features/cart/context';
 import '../styles.css';
 
 export function Item({ item }: { item: MenuItem }) {
   const { name, price, image } = item;
-  const [amount, setAmount] = useState(0);
+  const { cartItems, addToCart, updateQuantity } = useCartContext();
 
-  const handleIncrement = () => setAmount((prev) => prev + 1);
-  const handleDecrement = () => setAmount(prev > 0 ? prev - 1 : 0);
+  const cartItem = cartItems.find((cartItem) => cartItem.item.id === item.id);
+  const amount = cartItem ? cartItem.quantity : 0;
+
+  const handleIncrement = () => {
+    if (amount === 0) {
+      addToCart(item, 1);
+    } else {
+      updateQuantity(item.id, amount + 1);
+    }
+  };
+
+  const handleDecrement = () => {
+    if (amount > 0) {
+      updateQuantity(item.id, amount - 1);
+    }
+  };
 
   return (
     <Box>

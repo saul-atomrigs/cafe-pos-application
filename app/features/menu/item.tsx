@@ -27,7 +27,7 @@ export function Item({ item }: { item: MenuItem }) {
           {item.name}
         </Txt>
         <Txt size='base' style={{ color: '#4a5568', marginTop: '0.5rem' }}>
-          ${item.price.toFixed(2)}
+          {item.price}원
         </Txt>
       </div>
     </Box>

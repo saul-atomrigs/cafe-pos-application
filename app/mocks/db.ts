@@ -1,4 +1,5 @@
 import type { MenuItem, Order, Points } from './types';
+import { LiveStorage } from '@mswjs/storage';
 import { nanoid } from 'nanoid';
 
 // Menu items data
@@ -42,12 +43,11 @@ export function getMenu(): MenuItem[] {
   return menuItems;
 }
 
-// In-memory data store
-const orders: Order[] = [];
+const orders = new LiveStorage<Order[]>('orders', []);
 const pointsStore: Points[] = [];
 
 export function getOrders() {
-  return orders;
+  return orders.getValue();
 }
 
 export function getOrder(id: string) {
@@ -61,7 +61,7 @@ export function createOrder(order: Omit<Order, 'id' | 'timestamp'>) {
     timestamp: new Date().toISOString(),
   };
 
-  orders.push(newOrder);
+  orders.update((prevOrders) => prevOrders.concat(newOrder));
   return newOrder;
 }
 

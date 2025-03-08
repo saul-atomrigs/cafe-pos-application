@@ -27,7 +27,7 @@ export function CartModal() {
 
       if (result.success) {
         clearCart();
-        navigate('/');
+        navigate('/orders');
       }
     } catch (error) {
       console.error('Order failed:', error);

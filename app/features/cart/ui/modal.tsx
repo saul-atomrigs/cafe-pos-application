@@ -8,9 +8,12 @@ import { ROUTES } from '~/routes';
 
 export function CartModal() {
   const navigate = useNavigate();
+
   const { cartItems, getCartTotal, getOrderItems, clearCart } =
     useCartContext();
   const cartTotalAmount = getCartTotal();
+  const orderItems = getOrderItems();
+
   const { mutateAsync: createOrder } = useOrder();
 
   const handleOrder = async () => {
@@ -20,8 +23,8 @@ export function CartModal() {
 
     try {
       const orderData = {
-        items: getOrderItems(),
-        totalAmount: getCartTotal(),
+        items: orderItems,
+        totalAmount: cartTotalAmount,
         pointsUsed: 0,
         customerPhone: undefined,
       };

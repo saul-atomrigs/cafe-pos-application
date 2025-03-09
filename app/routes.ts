@@ -9,4 +9,5 @@ export default [
 export const ROUTES = {
   START: '/',
   MENU: '/menu',
+  ORDERS: '/orders',
 };

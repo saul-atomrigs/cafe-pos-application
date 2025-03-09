@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { CartList } from '~/features/cart/ui/list';
 import { useCartContext } from '../context';
 import { useOrder } from '~/features/order/hooks';
+import { ROUTES } from '~/routes';
 
 export function CartModal() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export function CartModal() {
 
       if (result.success) {
         clearCart();
-        navigate('/orders');
+        navigate(ROUTES.ORDERS);
       }
     } catch (error) {
       console.error('Order failed:', error);

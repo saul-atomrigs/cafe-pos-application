@@ -1,7 +1,7 @@
 import { CTAButton, Modal, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
 import { useNavigate } from 'react-router';
-import { List } from '~/features/cart/ui/list';
+import { CartList } from '~/features/cart/ui/list';
 import { useCartContext } from '../context';
 import { useOrder } from '~/features/order/hooks';
 
@@ -57,7 +57,7 @@ export function CartModal() {
               marginBottom: '1rem',
             }}
           >
-            <List items={cartItems} />
+            <CartList items={cartItems} />
             <div
               style={{
                 fontWeight: 'bold',

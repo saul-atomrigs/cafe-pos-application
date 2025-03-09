@@ -12,8 +12,8 @@ type CartContextType = {
   removeFromCart: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   clearCart: () => void;
-  getCartTotal: () => number;
-  getOrderItems: () => OrderItem[];
+  cartTotalAmount: number;
+  orderItems: OrderItem[];
 };
 
 const CartContext = createContext<CartContextType>({
@@ -22,8 +22,8 @@ const CartContext = createContext<CartContextType>({
   removeFromCart: () => {},
   updateQuantity: () => {},
   clearCart: () => {},
-  getCartTotal: () => 0,
-  getOrderItems: () => [],
+  cartTotalAmount: 0,
+  orderItems: [],
 });
 
 export function CartProvider({ children }: { children: ReactNode }) {
@@ -79,6 +79,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       0
     );
   };
+  const cartTotalAmount = getCartTotal();
 
   const getOrderItems = (): OrderItem[] => {
     return cartItems.map(({ item, quantity }) => ({
@@ -87,6 +88,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       unitPrice: item.price,
     }));
   };
+  const orderItems = getOrderItems();
 
   const value = {
     cartItems,
@@ -94,8 +96,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     removeFromCart,
     updateQuantity,
     clearCart,
-    getCartTotal,
-    getOrderItems,
+    cartTotalAmount,
+    orderItems,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

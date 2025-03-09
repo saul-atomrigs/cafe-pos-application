@@ -9,10 +9,8 @@ import { ROUTES } from '~/routes';
 export function CartModal() {
   const navigate = useNavigate();
 
-  const { cartItems, getCartTotal, getOrderItems, clearCart } =
+  const { cartItems, orderItems, cartTotalAmount, clearCart } =
     useCartContext();
-  const cartTotalAmount = getCartTotal();
-  const orderItems = getOrderItems();
 
   const { mutateAsync: createOrder } = useOrder();
 

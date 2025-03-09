@@ -14,7 +14,10 @@ export function CartList({ items }: { items: CartItem[] }) {
         const { id, name, price } = item;
 
         return (
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div
+            key={id}
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
             <Txt size='base' weight='normal'>
               {name}
             </Txt>

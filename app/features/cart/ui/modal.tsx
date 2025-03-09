@@ -1,4 +1,5 @@
-import { CTAButton, Modal } from '@saul-atomrigs/design-system';
+import { CTAButton, Modal, Txt } from '@saul-atomrigs/design-system';
+import { krw } from '@saul-atomrigs/hangeul';
 import { useNavigate } from 'react-router';
 import { List } from '~/features/cart/ui/list';
 import { useCartContext } from '../context';
@@ -8,6 +9,7 @@ export function CartModal() {
   const navigate = useNavigate();
   const { cartItems, getCartTotal, getOrderItems, clearCart } =
     useCartContext();
+  const cartTotalAmount = getCartTotal();
   const { mutateAsync: createOrder } = useOrder();
 
   const handleOrder = async () => {
@@ -65,7 +67,7 @@ export function CartModal() {
                 borderTop: '1px solid #eee',
               }}
             >
-              <h3>총액: {getCartTotal().toLocaleString()}원</h3>
+              <Txt>총액: {krw(cartTotalAmount)}</Txt>
             </div>
           </div>
           <div

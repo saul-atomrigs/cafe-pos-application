@@ -11,9 +11,11 @@ type CartContextType = {
   addToCart: (item: MenuItem, quantity: number) => void;
   removeFromCart: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
+  updateCustomerPhone: (phone?: string) => void;
   clearCart: () => void;
   cartTotalAmount: number;
   orderItems: OrderItem[];
+  customerPhone?: string;
 };
 
 const CartContext = createContext<CartContextType>({
@@ -21,13 +23,18 @@ const CartContext = createContext<CartContextType>({
   addToCart: () => {},
   removeFromCart: () => {},
   updateQuantity: () => {},
+  updateCustomerPhone: () => {},
   clearCart: () => {},
   cartTotalAmount: 0,
   orderItems: [],
+  customerPhone: undefined,
 });
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [customerPhone, setCustomerPhone] = useState<string | undefined>(
+    undefined
+  );
 
   const addToCart = (item: MenuItem, quantity: number) => {
     if (quantity <= 0) return;
@@ -69,8 +76,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const updateCustomerPhone = (phone?: string) => {
+    setCustomerPhone(phone);
+  };
+
   const clearCart = () => {
     setCartItems([]);
+    setCustomerPhone(undefined);
   };
 
   const getCartTotal = () => {
@@ -95,9 +107,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     addToCart,
     removeFromCart,
     updateQuantity,
+    updateCustomerPhone,
     clearCart,
     cartTotalAmount,
     orderItems,
+    customerPhone,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

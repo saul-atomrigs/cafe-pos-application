@@ -69,7 +69,8 @@ export function CartModal() {
                 borderTop: '1px solid #eee',
               }}
             >
-              <Txt>총액: {krw(cartTotalAmount)}</Txt>
+              <Txt weight='bold'>총액: {krw(cartTotalAmount)}</Txt>
+              <Txt size='xs'>적립 포인트: {krw(cartTotalAmount / 100)}</Txt>
             </div>
           </div>
           <div

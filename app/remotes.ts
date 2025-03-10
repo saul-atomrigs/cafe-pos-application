@@ -26,7 +26,7 @@ export interface OrderItem {
 export interface OrderRequestData {
   items: OrderItem[];
   totalAmount: number;
-  pointsUsed: number;
+  pointsUsed?: number;
   customerPhone?: string;
 }
 
@@ -37,7 +37,7 @@ export interface OrderResponseData {
     items: OrderItem[];
     totalAmount: number;
     pointsEarned: number;
-    pointsUsed: number;
+    pointsUsed?: number;
     customerPhone?: string;
     timestamp: string;
   };
@@ -60,7 +60,7 @@ export interface Receipt {
   items: ReceiptItem[];
   totalAmount: number;
   pointsEarned: number;
-  pointsUsed: number;
+  pointsUsed?: number;
   finalAmount: number;
   customerPhone?: string;
 }

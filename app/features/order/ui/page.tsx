@@ -4,17 +4,16 @@ import { OrdersList } from './list';
 
 export default function OrdersPage() {
   return (
-    <div className='p-4'>
-      <Txt weight='bold' size='2xl' style={{ marginBottom: '1rem' }}>
-        Orders History
-      </Txt>
-
-      <AsyncBoundary
-        rejectedFallback={() => <Error message='Failed to load orders' />}
-        pendingFallback={<Loading message='Loading orders...' />}
-      >
+    <AsyncBoundary
+      rejectedFallback={() => <Error message='Failed to load orders' />}
+      pendingFallback={<Loading message='Loading orders...' />}
+    >
+      <div className='p-4'>
+        <Txt weight='bold' size='2xl' style={{ marginBottom: '1rem' }}>
+          Orders History
+        </Txt>
         <OrdersList />
-      </AsyncBoundary>
-    </div>
+      </div>
+    </AsyncBoundary>
   );
 }

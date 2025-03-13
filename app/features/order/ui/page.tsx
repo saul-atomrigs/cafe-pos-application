@@ -1,7 +1,6 @@
-import { Error, Loading } from '@saul-atomrigs/design-system';
+import { Error, Loading, Txt } from '@saul-atomrigs/design-system';
 import { AsyncBoundary } from '@toss/async-boundary';
 import { OrdersList } from './list';
-import { Txt } from '../../../components/Txt';
 
 export default function OrdersPage() {
   return (

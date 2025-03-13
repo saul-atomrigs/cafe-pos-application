@@ -13,21 +13,18 @@ export const useMenuQuery = () =>
     staleTime: _3분,
   });
 
-export function useMenu() {
+export const useMenuSection = () => {
   const { data: menuItems } = useMenuQuery();
+  const menuSections = [
+    {
+      title: '음료',
+      items: menuItems.filter((item) => item.category === 'beverage'),
+    },
+    {
+      title: '디저트',
+      items: menuItems.filter((item) => item.category === 'dessert'),
+    },
+  ];
 
-  const beverages = menuItems.filter((item) => item.category === 'beverage');
-  const desserts = menuItems.filter((item) => item.category === 'dessert');
-
-  const getMenuItem = useCallback(
-    (id: string) => menuItems.find((item) => item.id === id),
-    [menuItems]
-  );
-
-  return {
-    menuItems,
-    beverages,
-    desserts,
-    getMenuItem,
-  };
-}
+  return { menuSections };
+};

@@ -1,42 +1,12 @@
 import { CTAButton, Modal, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
-import { useNavigate } from 'react-router';
-import { CartList } from '~/features/cart/ui/list';
 import { useCartContext } from '../context';
-import { useOrder } from '~/features/order/hooks';
-import { ROUTES } from '~/routes';
+import { useCartModal } from '../hooks';
+import { CartList } from './list';
 
 export function CartModal() {
-  const navigate = useNavigate();
-
-  const { cartItems, orderItems, cartTotalAmount, clearCart } =
-    useCartContext();
-
-  const { mutateAsync: createOrder } = useOrder();
-
-  const handleOrder = async () => {
-    if (cartItems.length === 0) {
-      return;
-    }
-
-    try {
-      const orderData = {
-        items: orderItems,
-        totalAmount: cartTotalAmount,
-        pointsUsed: 0,
-        customerPhone: undefined,
-      };
-
-      const result = await createOrder(orderData);
-
-      if (result.success) {
-        clearCart();
-        navigate(ROUTES.ORDERS);
-      }
-    } catch (error) {
-      console.error('Order failed:', error);
-    }
-  };
+  const { cartItems, cartTotalAmount } = useCartContext();
+  const { handleOrder } = useCartModal();
 
   return (
     <Modal.Provider title='주문 확인'>

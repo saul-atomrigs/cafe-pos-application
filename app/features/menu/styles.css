@@ -69,3 +69,34 @@
   min-width: 20px;
   text-align: center;
 }
+
+.cart-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cart-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.cart-details {
+  flex: 1;
+}
+
+.cart-action {
+  display: flex;
+  align-items: flex-end;
+}
+
+.order-button {
+  height: 100%;
+  min-height: 60px;
+}

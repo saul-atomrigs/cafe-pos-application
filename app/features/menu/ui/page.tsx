@@ -1,7 +1,7 @@
 import { Error, Loading } from '@saul-atomrigs/design-system';
 import { AsyncBoundary } from '@toss/async-boundary';
-import { CartModal } from '~/features/cart/ui/modal';
 import { MenuList } from './list';
+import { Cart } from '~/features/cart/ui/cart';
 
 export default function MenuPage() {
   return (
@@ -10,7 +10,7 @@ export default function MenuPage() {
       pendingFallback={<Loading message='메뉴를 불러오고 있습니다' />}
     >
       <MenuList />
-      <CartModal />
+      <Cart />
     </AsyncBoundary>
   );
 }

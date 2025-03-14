@@ -3,11 +3,12 @@ import { useOrder } from '../order/hooks';
 import { useNavigate } from 'react-router';
 import { useCartContext } from './context';
 
-export const useCartModal = () => {
+export const useCart = () => {
   const navigate = useNavigate();
   const { cartItems, orderItems, cartTotalAmount, clearCart } =
     useCartContext();
   const { mutateAsync: createOrder } = useOrder();
+
   const handleOrder = async () => {
     if (cartItems.length === 0) {
       return;

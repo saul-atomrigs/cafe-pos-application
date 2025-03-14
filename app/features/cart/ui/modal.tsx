@@ -1,12 +1,12 @@
 import { CTAButton, Modal, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
 import { useCartContext } from '../context';
-import { useCartModal } from '../hooks';
+import { useCart } from '../hooks';
 import { CartList } from './list';
 
 export function CartModal() {
   const { cartItems, cartTotalAmount } = useCartContext();
-  const { handleOrder } = useCartModal();
+  const { handleOrder } = useCart();
 
   return (
     <Modal.Provider title='주문 확인'>

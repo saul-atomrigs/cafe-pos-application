@@ -1,9 +1,13 @@
 import { _1분, _3분 } from '@saul-atomrigs/hangeul';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { useCallback } from 'react';
-import { getMenuAPI } from '~/remotes';
+import { useMemo } from 'react';
+import { getMenuAPI, type Category, type MenuItem } from '~/remotes';
+import { CATEGORY, KOR_CATEGORY, MENU_QUERY_KEY } from './constants';
 
-export const MENU_QUERY_KEY = ['menu'];
+export interface MenuSection {
+  title: string;
+  items: MenuItem[];
+}
 
 export const useMenuQuery = () =>
   useSuspenseQuery({
@@ -13,18 +17,23 @@ export const useMenuQuery = () =>
     staleTime: _3분,
   });
 
-export const useMenuSection = () => {
+export const useMenuSection = (category?: Category) => {
   const { data: menuItems } = useMenuQuery();
-  const menuSections = [
-    {
-      title: '음료',
-      items: menuItems.filter((item) => item.category === 'beverage'),
-    },
-    {
-      title: '디저트',
-      items: menuItems.filter((item) => item.category === 'dessert'),
-    },
-  ];
+  const filteredItems = useMemo(() => {
+    if (!category) return menuItems;
+    return menuItems.filter((item) => item.category === category);
+  }, [menuItems, category]);
+
+  const menuSections = useMemo<MenuSection[]>(() => {
+    let title = KOR_CATEGORY.ALL;
+    if (category) {
+      title =
+        category === CATEGORY.BEVERAGE
+          ? KOR_CATEGORY.BEVERAGE
+          : KOR_CATEGORY.DESSERT;
+    }
+    return [{ title, items: filteredItems }];
+  }, [filteredItems, category]);
 
   return { menuSections };
 };

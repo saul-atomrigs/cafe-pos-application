@@ -9,11 +9,13 @@ const api = axios.create({
 });
 
 // Types based on the API handlers
+
+export type Category = 'beverage' | 'dessert';
 export interface MenuItem {
   id: string;
   name: string;
   price: number;
-  category: 'beverage' | 'dessert';
+  category: Category;
   image?: string;
 }
 

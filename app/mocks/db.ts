@@ -11,6 +11,15 @@ const menuItems: MenuItem[] = [
     category: 'beverage',
     image: '/images/americano.jpg',
     description: '진한 에스프레소와 뜨거운 물을 섞은 클래식 커피',
+    option: [
+      {
+        name: '연하게',
+      },
+      {
+        name: '2샷',
+        price: 500,
+      },
+    ],
   },
   {
     id: nanoid(),
@@ -19,6 +28,29 @@ const menuItems: MenuItem[] = [
     category: 'beverage',
     image: '/images/latte.jpg',
     description: '에스프레소와 스팀밀크의 조화',
+    option: [
+      {
+        name: '2샷',
+        price: 500,
+      },
+    ],
+  },
+  {
+    id: nanoid(),
+    name: '얼그레이 밀크티',
+    price: 5500,
+    category: 'beverage',
+    image: '/images/milktea.jpg',
+    description: '얼그레이 향과 부드러운 우유가 어우러진 홍차 음료',
+    option: [
+      {
+        name: '두유로 변경',
+      },
+      {
+        name: '2샷',
+        price: 500,
+      },
+    ],
   },
   {
     id: nanoid(),

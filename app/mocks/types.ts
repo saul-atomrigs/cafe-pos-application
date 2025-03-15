@@ -6,6 +6,10 @@ export type MenuItem = {
   category: 'beverage' | 'dessert';
   image?: string;
   description?: string;
+  option?: {
+    name: string;
+    price?: number;
+  }[];
 };
 
 // Types for orders

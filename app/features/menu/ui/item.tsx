@@ -3,6 +3,7 @@ import { Box, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
 import OrderAmountInput from '~/features/cart/ui/order-amount-input';
 import type { MenuItem } from '~/remotes';
+import { ROUTES } from '~/routes';
 import '../styles.css';
 
 export function Item({ item }: { item: MenuItem }) {
@@ -13,7 +14,7 @@ export function Item({ item }: { item: MenuItem }) {
   return (
     <Box
       onClick={() => {
-        option && navigate(`/options/${id}`);
+        option && navigate(ROUTES.OPTION_DETAIL(id));
       }}
     >
       {item.image && (

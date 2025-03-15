@@ -1,5 +1,4 @@
-import { useState, type PropsWithChildren } from 'react';
-import { createContext } from '@saul-atomrigs/react';
+import { createContext, useState, useContext, type ReactNode } from 'react';
 import type { MenuItem, OrderItem } from '~/remotes';
 
 export type CartItem = {
@@ -19,14 +18,19 @@ type CartContextType = {
   customerPhone?: string;
 };
 
-const CART_CONTEXT_NAME = 'Cart';
+const CartContext = createContext<CartContextType>({
+  cartItems: [],
+  addToCart: () => {},
+  removeFromCart: () => {},
+  updateQuantity: () => {},
+  updateCustomerPhone: () => {},
+  clearCart: () => {},
+  cartTotalAmount: 0,
+  orderItems: [],
+  customerPhone: undefined,
+});
 
-const [Provider, useContext] =
-  createContext<CartContextType>(CART_CONTEXT_NAME);
-
-export { useContext as useCartContext };
-
-export function CartProvider({ children }: PropsWithChildren) {
+export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [customerPhone, setCustomerPhone] = useState<string | undefined>(
     undefined
@@ -98,19 +102,25 @@ export function CartProvider({ children }: PropsWithChildren) {
   };
   const orderItems = getOrderItems();
 
-  return (
-    <Provider
-      cartItems={cartItems}
-      addToCart={addToCart}
-      removeFromCart={removeFromCart}
-      updateQuantity={updateQuantity}
-      updateCustomerPhone={updateCustomerPhone}
-      clearCart={clearCart}
-      cartTotalAmount={cartTotalAmount}
-      orderItems={orderItems}
-      customerPhone={customerPhone}
-    >
-      {children}
-    </Provider>
-  );
+  const value = {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    updateCustomerPhone,
+    clearCart,
+    cartTotalAmount,
+    orderItems,
+    customerPhone,
+  };
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+}
+
+export function useCartContext() {
+  const context = useContext(CartContext);
+  if (context === undefined) {
+    throw new Error('useCartContext must be used within a CartProvider');
+  }
+  return context;
 }

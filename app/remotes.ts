@@ -15,8 +15,13 @@ export interface MenuItem {
   id: string;
   name: string;
   price: number;
-  category: Category;
+  category: 'beverage' | 'dessert';
   image?: string;
+  description?: string;
+  option?: {
+    name: string;
+    price?: number;
+  }[];
 }
 
 export interface OrderItem {

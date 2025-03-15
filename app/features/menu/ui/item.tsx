@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { Box, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
 import OrderAmountInput from '~/features/cart/ui/order-amount-input';
@@ -5,10 +6,16 @@ import type { MenuItem } from '~/remotes';
 import '../styles.css';
 
 export function Item({ item }: { item: MenuItem }) {
-  const { name, price, image } = item;
+  const navigate = useNavigate();
+
+  const { id, name, price, image, option } = item;
 
   return (
-    <Box>
+    <Box
+      onClick={() => {
+        option && navigate(`/options/${id}`);
+      }}
+    >
       {item.image && (
         <div className='menuItem__imageContainer'>
           <img src={image} alt={name} className='menuItem__image' />

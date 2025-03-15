@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 // Menu items data
 const menuItems: MenuItem[] = [
   {
-    id: nanoid(),
+    id: 'americano',
     name: '아메리카노',
     price: 4500,
     category: 'beverage',
@@ -22,7 +22,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    id: nanoid(),
+    id: 'latte',
     name: '카페라떼',
     price: 5000,
     category: 'beverage',
@@ -36,7 +36,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    id: nanoid(),
+    id: 'milktea',
     name: '얼그레이 밀크티',
     price: 5500,
     category: 'beverage',
@@ -53,7 +53,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    id: nanoid(),
+    id: 'croissant',
     name: '크로와상',
     price: 3800,
     category: 'dessert',
@@ -61,7 +61,7 @@ const menuItems: MenuItem[] = [
     description: '바삭한 겉면과 부드러운 속을 가진 프랑스 대표 빵',
   },
   {
-    id: nanoid(),
+    id: 'cheesecake',
     name: '치즈케이크',
     price: 5500,
     category: 'dessert',

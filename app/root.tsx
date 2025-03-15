@@ -12,6 +12,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MockProvider } from './mocks/context';
 import { CartProvider } from '~/features/cart/context';
 import './app.css';
+import { MenuProvider } from './features/menu/context';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,9 +58,11 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <MockProvider>
-        <CartProvider>
-          <Outlet />
-        </CartProvider>
+        <MenuProvider>
+          <CartProvider>
+            <Outlet />
+          </CartProvider>
+        </MenuProvider>
       </MockProvider>
     </QueryClientProvider>
   );

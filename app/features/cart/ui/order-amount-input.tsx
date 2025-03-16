@@ -22,7 +22,7 @@ export default function OrderAmountInput({ item }: { item: MenuItem }) {
     }
   };
   return (
-    <>
+    <div style={{ display: 'flex', gap: '1rem' }}>
       <Button
         variant='secondary'
         onClick={handleDecrement}
@@ -36,6 +36,6 @@ export default function OrderAmountInput({ item }: { item: MenuItem }) {
       <Button variant='primary' onClick={handleIncrement}>
         +
       </Button>
-    </>
+    </div>
   );
 }

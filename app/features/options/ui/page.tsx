@@ -1,4 +1,4 @@
-import { Box, Button, Txt } from '@saul-atomrigs/design-system';
+import { Box, CTAButton, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
 import { useNavigate } from 'react-router';
 import OrderAmountInput from '~/features/cart/ui/order-amount-input';
@@ -19,13 +19,20 @@ export default function OptionsPage() {
   return (
     <>
       <Box>
-        <Box>
-          <Txt size='xl' weight='bold'>
-            {name}
-          </Txt>
-          <Txt size='lg'>{krw(price)}</Txt>
-          {description && <Txt color='gray'>{description}</Txt>}
-        </Box>
+        <Txt size='xl' weight='bold'>
+          {name}
+        </Txt>
+        {description && <Txt color='gray'>{description}</Txt>}
+        <Txt size='lg'>{krw(price)}</Txt>
+      </Box>
+      <Box style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <Txt size='lg' weight='bold'>
+          총 금액
+        </Txt>
+        <Txt size='lg' weight='bold'>
+          {krw(totalItemPrice)}
+        </Txt>
+        <OrderAmountInput item={menuItem} />
       </Box>
 
       <OptionSelection
@@ -34,22 +41,7 @@ export default function OptionsPage() {
         onToggleOption={toggleOption}
       />
 
-      <Box>
-        <OrderAmountInput item={menuItem} />
-
-        <Box>
-          <Txt size='lg' weight='bold'>
-            총 금액
-          </Txt>
-          <Txt size='lg' weight='bold'>
-            {krw(totalItemPrice)}
-          </Txt>
-        </Box>
-
-        <Button onClick={() => navigate(-1)} variant='primary'>
-          장바구니에 담기
-        </Button>
-      </Box>
+      <CTAButton onClick={() => navigate(-1)}>주문 담기</CTAButton>
     </>
   );
 }

@@ -10,7 +10,7 @@ export default function OrdersPage() {
     >
       <div className='p-4'>
         <Txt weight='bold' size='2xl' style={{ marginBottom: '1rem' }}>
-          Orders History
+          주문 내역
         </Txt>
         <OrdersList />
       </div>

@@ -17,16 +17,21 @@ export const OptionSelection = ({
   }
 
   return (
-    <Box>
-      <Txt size='lg' weight='bold'>
-        옵션 선택
-      </Txt>
-      {options.map((option) => (
-        <Box key={option.name} onClick={() => onToggleOption(option.name)}>
-          <Txt>{option.name}</Txt>
-          {option.price && <Txt>{krw(option.price)}</Txt>}
+    <>
+      {options.map(({ name, price }) => (
+        <Box
+          key={name}
+          onClick={() => onToggleOption(name)}
+          style={{
+            backgroundColor: selectedOptions.has(name)
+              ? '#f0f0f0'
+              : 'transparent',
+          }}
+        >
+          <Txt>{name}</Txt>
+          {price && <Txt>{krw(price)}</Txt>}
         </Box>
       ))}
-    </Box>
+    </>
   );
 };

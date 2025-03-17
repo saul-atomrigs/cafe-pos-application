@@ -35,11 +35,16 @@ export default function OptionsPage() {
         <OrderAmountInput item={menuItem} />
       </Box>
 
-      <OptionSelection
-        options={option}
-        selectedOptions={selectedOptions}
-        onToggleOption={toggleOption}
-      />
+      <Box>
+        <Txt size='lg' weight='bold'>
+          옵션 선택
+        </Txt>
+        <OptionSelection
+          options={option}
+          selectedOptions={selectedOptions}
+          onToggleOption={toggleOption}
+        />
+      </Box>
 
       <CTAButton onClick={() => navigate(-1)}>주문 담기</CTAButton>
     </>

@@ -19,7 +19,7 @@ export default function OptionsPage() {
 
   if (!menuItem) return <OptionsFallback />;
 
-  const { name, price, description, option } = menuItem;
+  const { name, price, description, optionGroups } = menuItem;
 
   const handleAddToCart = () => {
     if (menuItem) {
@@ -56,7 +56,7 @@ export default function OptionsPage() {
           옵션 선택
         </Txt>
         <OptionSelection
-          options={option}
+          optionGroups={optionGroups}
           selectedOptions={selectedOptions}
           onToggleOption={toggleOption}
         />

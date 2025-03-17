@@ -2,34 +2,50 @@ import { Box, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
 
 interface OptionSelectionProps {
-  options?: { name: string; price?: number }[];
+  optionGroups?: {
+    name: string;
+    exclusive: boolean;
+    options: { name: string; price?: number }[];
+  }[];
   selectedOptions: Set<string>;
   onToggleOption: (optionName: string) => void;
 }
 
 export const OptionSelection = ({
-  options,
+  optionGroups,
   selectedOptions,
   onToggleOption,
 }: OptionSelectionProps) => {
-  if (!options || options.length === 0) {
+  if (!optionGroups || optionGroups.length === 0) {
     return <Txt>옵션이 없습니다.</Txt>;
   }
 
   return (
     <>
-      {options.map(({ name, price }) => (
-        <Box
-          key={name}
-          onClick={() => onToggleOption(name)}
-          style={{
-            backgroundColor: selectedOptions.has(name)
-              ? '#f0f0f0'
-              : 'transparent',
-          }}
-        >
-          <Txt>{name}</Txt>
-          {price && <Txt>{krw(price)}</Txt>}
+      {optionGroups.map((group) => (
+        <Box key={group.name}>
+          <Txt>{group.name}</Txt>
+
+          {group.options.map((option) => (
+            <Box
+              key={option.name}
+              onClick={() => onToggleOption(option.name)}
+              style={{
+                backgroundColor: selectedOptions.has(option.name)
+                  ? '#f0f0f0'
+                  : 'transparent',
+                padding: '8px',
+                margin: '4px 0',
+                borderRadius: '4px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <Txt>{option.name}</Txt>
+              {option.price && <Txt>{krw(option.price)}</Txt>}
+            </Box>
+          ))}
         </Box>
       ))}
     </>

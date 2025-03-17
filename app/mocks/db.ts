@@ -11,13 +11,25 @@ const menuItems: MenuItem[] = [
     category: 'beverage',
     image: '/images/americano.jpg',
     description: '진한 에스프레소와 뜨거운 물을 섞은 클래식 커피',
-    option: [
+    optionGroups: [
       {
-        name: '연하게',
+        name: 'temperature',
+        exclusive: true,
+        options: [{ name: 'ICE' }, { name: 'HOT' }],
       },
       {
-        name: '2샷',
-        price: 500,
+        name: 'size',
+        exclusive: true,
+        options: [
+          { name: 'Regular' },
+          { name: 'Large', price: 500 },
+          { name: 'Max', price: 1000 },
+        ],
+      },
+      {
+        name: 'extras',
+        exclusive: false,
+        options: [{ name: '연하게' }, { name: '2샷', price: 500 }],
       },
     ],
   },
@@ -28,10 +40,25 @@ const menuItems: MenuItem[] = [
     category: 'beverage',
     image: '/images/latte.jpg',
     description: '에스프레소와 스팀밀크의 조화',
-    option: [
+    optionGroups: [
       {
-        name: '2샷',
-        price: 500,
+        name: 'temperature',
+        exclusive: true,
+        options: [{ name: 'ICE' }, { name: 'HOT' }],
+      },
+      {
+        name: 'size',
+        exclusive: true,
+        options: [
+          { name: 'Regular' },
+          { name: 'Large', price: 500 },
+          { name: 'Max', price: 1000 },
+        ],
+      },
+      {
+        name: 'extras',
+        exclusive: false,
+        options: [{ name: '2샷', price: 500 }],
       },
     ],
   },
@@ -42,13 +69,25 @@ const menuItems: MenuItem[] = [
     category: 'beverage',
     image: '/images/milktea.jpg',
     description: '얼그레이 향과 부드러운 우유가 어우러진 홍차 음료',
-    option: [
+    optionGroups: [
       {
-        name: '두유로 변경',
+        name: 'temperature',
+        exclusive: true,
+        options: [{ name: 'ICE' }, { name: 'HOT' }],
       },
       {
-        name: '2샷',
-        price: 500,
+        name: 'size',
+        exclusive: true,
+        options: [
+          { name: 'Regular' },
+          { name: 'Large', price: 500 },
+          { name: 'Max', price: 1000 },
+        ],
+      },
+      {
+        name: 'extras',
+        exclusive: false,
+        options: [{ name: '두유로 변경' }, { name: '2샷', price: 500 }],
       },
     ],
   },

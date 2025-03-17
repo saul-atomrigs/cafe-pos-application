@@ -1,24 +1,15 @@
-import { Button } from '@saul-atomrigs/design-system';
-import { CartTotal } from './total';
-import { CartList } from './list';
 import { useCartContext } from '../context';
-import { useCart } from '../hooks';
+import { CartErrorBoundary } from './error-boundary';
+import { CartContent } from './content';
 
 export const Cart = () => {
-  const { cartItems } = useCartContext();
-  const { handleOrder } = useCart();
+  const { clearCart } = useCartContext();
 
   return (
     <div className='cart-container'>
-      <div className='cart-content'>
-        <div className='cart-details'>
-          <CartList items={cartItems} />
-          <CartTotal />
-        </div>
-        <div className='cart-action'>
-          <Button onClick={handleOrder}>주문 완료하기</Button>
-        </div>
-      </div>
+      <CartErrorBoundary onReset={clearCart}>
+        <CartContent />
+      </CartErrorBoundary>
     </div>
   );
 };

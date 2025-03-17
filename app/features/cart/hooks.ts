@@ -1,36 +1,31 @@
-import { ROUTES } from '~/routes';
+import type { OrderResponseData } from '~/remotes';
 import { useOrder } from '../order/hooks';
-import { useNavigate } from 'react-router';
 import { useCartContext } from './context';
 
 export const useCart = () => {
-  const navigate = useNavigate();
   const { cartItems, orderItems, cartTotalAmount, clearCart } =
     useCartContext();
   const { mutateAsync: createOrder } = useOrder();
 
-  const handleOrder = async () => {
+  const handleOrder = async (): Promise<OrderResponseData> => {
     if (cartItems.length === 0) {
-      return;
+      throw new Error('장바구니가 비어있습니다.');
     }
 
-    try {
-      const orderData = {
-        items: orderItems,
-        totalAmount: cartTotalAmount,
-        pointsUsed: 0,
-        customerPhone: undefined,
-      };
+    const orderData = {
+      items: orderItems,
+      totalAmount: cartTotalAmount,
+      pointsUsed: 0,
+      customerPhone: undefined,
+    };
 
-      const result = await createOrder(orderData);
+    const result = await createOrder(orderData);
 
-      if (result.success) {
-        clearCart();
-        navigate(ROUTES.ORDERS);
-      }
-    } catch (error) {
-      console.error('Order failed:', error);
+    if (result.success) {
+      clearCart();
     }
+
+    return result;
   };
 
   return { handleOrder };

@@ -3,7 +3,7 @@ import { krw } from '@saul-atomrigs/hangeul';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import OrderAmountInput from '~/features/cart/ui/order-amount-input';
-import { useOptionsManagement } from '../hooks';
+import { useOptions } from '../hooks';
 import '../styles.css';
 import OptionsFallback from './fallback';
 import { OptionSelection } from './select';
@@ -12,7 +12,7 @@ import { DEFAULT_QUANTITY } from '~/constants';
 
 export default function OptionsPage() {
   const { menuItem, selectedOptions, toggleOption, totalItemPrice } =
-    useOptionsManagement();
+    useOptions();
   const navigate = useNavigate();
   const { addToCart } = useCartContext();
   const [quantity, setQuantity] = useState(DEFAULT_QUANTITY);

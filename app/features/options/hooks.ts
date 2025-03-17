@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 import { useMenuItemContext } from '../menu/context';
 
-export function useOptionsManagement() {
+export function useOptions() {
   const { id } = useParams<{ id: string }>();
   const menuItem = useMenuItemContext(id || '');
   const [selectedOptions, setSelectedOptions] = useState<Set<string>>(

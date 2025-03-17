@@ -4,16 +4,21 @@ import { krw } from '@saul-atomrigs/hangeul';
 import type { MenuItem } from '~/remotes';
 import { ROUTES } from '~/routes';
 import '../styles.css';
+import { useCartContext } from '~/features/cart/context';
 
 export function Item({ item }: { item: MenuItem }) {
   const navigate = useNavigate();
+  const { addToCart } = useCartContext();
+  const DEFAULT_QUANTITY = 1;
 
   const { id, name, price, image, option } = item;
 
   return (
     <Box
       onClick={() => {
-        option && navigate(ROUTES.OPTION_DETAIL(id));
+        option
+          ? navigate(ROUTES.OPTION_DETAIL(id))
+          : addToCart(item, DEFAULT_QUANTITY);
       }}
     >
       {item.image && (

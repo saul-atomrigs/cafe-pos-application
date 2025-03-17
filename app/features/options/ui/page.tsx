@@ -23,7 +23,11 @@ export default function OptionsPage() {
 
   const handleAddToCart = () => {
     if (menuItem) {
-      addToCart({ item: menuItem, quantity });
+      addToCart({
+        item: menuItem,
+        quantity,
+        selectedOptions: selectedOptions.size > 0 ? selectedOptions : undefined,
+      });
       navigate(-1);
     }
   };

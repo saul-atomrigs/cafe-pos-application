@@ -18,9 +18,10 @@ export interface MenuItem {
   category: 'beverage' | 'dessert';
   image?: string;
   description?: string;
-  option?: {
+  optionGroups?: {
     name: string;
-    price?: number;
+    exclusive: boolean;
+    options: { name: string; price?: number }[];
   }[];
 }
 

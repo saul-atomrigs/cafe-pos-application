@@ -8,7 +8,11 @@ interface OptionSelectionProps {
     options: { name: string; price?: number }[];
   }[];
   selectedOptions: Set<string>;
-  onToggleOption: (optionName: string) => void;
+  onToggleOption: (
+    groupName: string,
+    optionName: string,
+    isExclusive: boolean
+  ) => void;
 }
 
 export const OptionSelection = ({
@@ -29,7 +33,9 @@ export const OptionSelection = ({
           {group.options.map((option) => (
             <Box
               key={option.name}
-              onClick={() => onToggleOption(option.name)}
+              onClick={() =>
+                onToggleOption(group.name, option.name, group.exclusive)
+              }
               style={{
                 backgroundColor: selectedOptions.has(option.name)
                   ? '#f0f0f0'

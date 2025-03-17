@@ -5,11 +5,11 @@ import type { MenuItem } from '~/remotes';
 import { ROUTES } from '~/routes';
 import '../styles.css';
 import { useCartContext } from '~/features/cart/context';
+import { DEFAULT_QUANTITY } from '~/constants';
 
 export function Item({ item }: { item: MenuItem }) {
   const navigate = useNavigate();
   const { addToCart } = useCartContext();
-  const DEFAULT_QUANTITY = 1;
 
   const { id, name, price, image, option } = item;
 

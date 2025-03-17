@@ -8,13 +8,14 @@ import '../styles.css';
 import OptionsFallback from './fallback';
 import { OptionSelection } from './select';
 import { useCartContext } from '~/features/cart/context';
+import { DEFAULT_QUANTITY } from '~/constants';
 
 export default function OptionsPage() {
   const { menuItem, selectedOptions, toggleOption, totalItemPrice } =
     useOptionsManagement();
   const navigate = useNavigate();
   const { addToCart } = useCartContext();
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(DEFAULT_QUANTITY);
 
   if (!menuItem) return <OptionsFallback />;
 

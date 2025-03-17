@@ -1,8 +1,7 @@
 import { Button, Txt } from '@saul-atomrigs/design-system';
 import { useCartContext } from '../context';
 import type { MenuItem } from '~/remotes';
-
-const DEFAULT_QUANTITY = 1;
+import { DEFAULT_QUANTITY } from '~/constants';
 
 export default function OrderAmountInput({
   item,

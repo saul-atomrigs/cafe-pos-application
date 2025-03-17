@@ -11,12 +11,12 @@ export function Item({ item }: { item: MenuItem }) {
   const navigate = useNavigate();
   const { addToCart } = useCartContext();
 
-  const { id, name, price, image, option } = item;
+  const { id, name, price, image, optionGroups } = item;
 
   return (
     <Box
       onClick={() => {
-        option
+        optionGroups && optionGroups.length > 0
           ? navigate(ROUTES.OPTION_DETAIL(id))
           : addToCart({ item, quantity: DEFAULT_QUANTITY });
       }}

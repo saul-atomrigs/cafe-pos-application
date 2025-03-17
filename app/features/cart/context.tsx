@@ -1,4 +1,9 @@
-import { createContext, useState, useContext, type ReactNode } from 'react';
+import {
+  createContext,
+  useState,
+  useContext,
+  type PropsWithChildren,
+} from 'react';
 import type { MenuItem, OrderItem } from '~/remotes';
 
 export type CartItem = {
@@ -30,7 +35,7 @@ const CartContext = createContext<CartContextType>({
   customerPhone: undefined,
 });
 
-export function CartProvider({ children }: { children: ReactNode }) {
+export function CartProvider({ children }: PropsWithChildren) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [customerPhone, setCustomerPhone] = useState<string | undefined>(
     undefined

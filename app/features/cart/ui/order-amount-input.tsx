@@ -27,7 +27,7 @@ export default function OrderAmountInput({
     if (onChange) {
       onChange(newAmount);
     } else if (amount === 0) {
-      addToCart(item, DEFAULT_QUANTITY);
+      addToCart({ item, quantity: DEFAULT_QUANTITY });
     } else {
       updateQuantity(item.id, newAmount);
     }

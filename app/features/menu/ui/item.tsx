@@ -18,7 +18,7 @@ export function Item({ item }: { item: MenuItem }) {
       onClick={() => {
         option
           ? navigate(ROUTES.OPTION_DETAIL(id))
-          : addToCart(item, DEFAULT_QUANTITY);
+          : addToCart({ item, quantity: DEFAULT_QUANTITY });
       }}
     >
       {item.image && (

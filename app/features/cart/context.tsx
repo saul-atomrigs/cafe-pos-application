@@ -8,7 +8,7 @@ export type CartItem = {
 
 type CartContextType = {
   cartItems: CartItem[];
-  addToCart: (item: MenuItem, quantity: number) => void;
+  addToCart: (item: CartItem) => void;
   removeFromCart: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   updateCustomerPhone: (phone?: string) => void;
@@ -36,7 +36,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     undefined
   );
 
-  const addToCart = (item: MenuItem, quantity: number) => {
+  const addToCart = ({ item, quantity }: CartItem) => {
     if (quantity <= 0) return;
 
     setCartItems((prevItems) => {

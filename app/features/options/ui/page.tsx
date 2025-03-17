@@ -23,7 +23,7 @@ export default function OptionsPage() {
 
   const handleAddToCart = () => {
     if (menuItem) {
-      addToCart(menuItem, quantity);
+      addToCart({ item: menuItem, quantity });
       navigate(-1);
     }
   };

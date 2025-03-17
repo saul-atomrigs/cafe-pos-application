@@ -30,28 +30,30 @@ export const OptionSelection = ({
         <Box key={group.name}>
           <Txt>{group.name}</Txt>
 
-          {group.options.map((option) => (
-            <Box
-              key={option.name}
-              onClick={() =>
-                onToggleOption(group.name, option.name, group.exclusive)
-              }
-              style={{
-                backgroundColor: selectedOptions.has(option.name)
-                  ? '#f0f0f0'
-                  : 'transparent',
-                padding: '8px',
-                margin: '4px 0',
-                borderRadius: '4px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <Txt>{option.name}</Txt>
-              {option.price && <Txt>{krw(option.price)}</Txt>}
-            </Box>
-          ))}
+          <div className='options-select'>
+            {group.options.map((option) => (
+              <Box
+                key={option.name}
+                onClick={() =>
+                  onToggleOption(group.name, option.name, group.exclusive)
+                }
+                style={{
+                  backgroundColor: selectedOptions.has(option.name)
+                    ? '#f0f0f0'
+                    : 'transparent',
+                  padding: '8px',
+                  margin: '4px 0',
+                  borderRadius: '4px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <Txt>{option.name}</Txt>
+                {option.price && <Txt>{krw(option.price)}</Txt>}
+              </Box>
+            ))}
+          </div>
         </Box>
       ))}
     </>

@@ -113,3 +113,9 @@
   align-items: center;
   height: 100%;
 }
+
+.options-select {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}

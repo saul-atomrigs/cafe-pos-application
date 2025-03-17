@@ -10,7 +10,7 @@ import { CATEGORY, KOR_CATEGORY } from './constants';
 
 interface MenuContextType {
   menuItems: MenuItem[];
-  getItemById: (id: string) => MenuItem | undefined;
+  getItemById: (id: string) => MenuItem;
   getMenuItemsByCategory: (category?: Category) => MenuItem[];
   getCategoryTitle: (category?: Category) => string;
   categories: Category[];
@@ -23,7 +23,9 @@ export function MenuProvider({ children }: PropsWithChildren) {
 
   const contextValue = useMemo(() => {
     const getItemById = (id: string) => {
-      return menuItems.find((item) => item.id === id);
+      const item = menuItems.find((item) => item.id === id);
+      if (!item) throw new Error(`Menu item with id ${id} not found`);
+      return item;
     };
 
     const getMenuItemsByCategory = (category?: Category) => {

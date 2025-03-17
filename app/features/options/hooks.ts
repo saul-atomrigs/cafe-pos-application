@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
 import { useMenuItemContext } from '../menu/context';
+import type { MenuItem } from '~/mocks/types';
 
-export function useOptions() {
-  const { id } = useParams<{ id: string }>();
-  const menuItem = useMenuItemContext(id || '');
+export function useOptions(menuItem: MenuItem) {
   const [selectedOptions, setSelectedOptions] = useState<Set<string>>(
     new Set()
   );

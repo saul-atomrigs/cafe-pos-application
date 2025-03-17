@@ -1,6 +1,6 @@
 import { Box, CTAButton, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useState } from 'react';
 import OrderAmountInput from '~/features/cart/ui/order-amount-input';
 import { useOptions } from '../hooks';
@@ -9,10 +9,13 @@ import OptionsFallback from './fallback';
 import { OptionSelection } from './select';
 import { useCartContext } from '~/features/cart/context';
 import { DEFAULT_QUANTITY } from '~/constants';
+import { useMenuItemContext } from '~/features/menu/context';
 
 export default function OptionsPage() {
-  const { menuItem, selectedOptions, toggleOption, totalItemPrice } =
-    useOptions();
+  const { id = '' } = useParams();
+  const menuItem = useMenuItemContext(id);
+  const { selectedOptions, toggleOption, totalItemPrice } =
+    useOptions(menuItem);
   const navigate = useNavigate();
   const { addToCart } = useCartContext();
   const [quantity, setQuantity] = useState(DEFAULT_QUANTITY);

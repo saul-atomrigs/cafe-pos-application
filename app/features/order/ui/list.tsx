@@ -1,4 +1,4 @@
-import { Box, List } from '@saul-atomrigs/design-system';
+import { Box, List, Txt } from '@saul-atomrigs/design-system';
 import { format } from 'date-fns';
 import { useGetOrders } from '../hooks';
 
@@ -31,41 +31,53 @@ export function OrdersList() {
                 marginBottom: '0.5rem',
               }}
             >
-              <h2 style={{ fontWeight: 600 }}>
+              <Txt weight='bold' size='lg'>
                 Order #{orderId.substring(0, 8)}
-              </h2>
-              <span style={{ color: '#6b7280' }}>
+              </Txt>
+              <Txt color='#6b7280'>
                 {format(new Date(timestamp), 'MMM dd, yyyy HH:mm')}
-              </span>
+              </Txt>
             </div>
 
             <div style={{ marginBottom: '0.5rem' }}>
-              <p>
-                <span style={{ fontWeight: 500 }}>Total:</span> $
-                {totalAmount.toFixed(2)}
-              </p>
+              <Txt>
+                <Txt weight='medium' style={{ display: 'inline' }}>
+                  Total:
+                </Txt>{' '}
+                ${totalAmount.toFixed(2)}
+              </Txt>
               {customerPhone && (
-                <p>
-                  <span style={{ fontWeight: 500 }}>Customer:</span>{' '}
+                <Txt>
+                  <Txt weight='medium' style={{ display: 'inline' }}>
+                    Customer:
+                  </Txt>{' '}
                   {customerPhone}
-                </p>
+                </Txt>
               )}
-              <p>
-                <span style={{ fontWeight: 500 }}>Points:</span>
+              <Txt>
+                <Txt weight='medium' style={{ display: 'inline' }}>
+                  Points:
+                </Txt>
                 {pointsUsed > 0 ? ` Used ${pointsUsed}` : ''}
                 {pointsEarned > 0 ? ` | Earned ${pointsEarned}` : ''}
-              </p>
+              </Txt>
             </div>
 
             <div>
-              <h3 style={{ fontWeight: 500, marginBottom: '0.25rem' }}>
+              <Txt weight='medium' style={{ marginBottom: '0.25rem' }}>
                 Items:
-              </h3>
+              </Txt>
               <ul style={{ fontSize: '0.875rem', color: '#374151' }}>
                 {items.map((item, idx) => (
                   <li key={idx}>
-                    {item.name} x{item.quantity} - $
-                    {(item.quantity * item.unitPrice).toFixed(2)}
+                    <Txt
+                      size='sm'
+                      color='#374151'
+                      style={{ display: 'inline' }}
+                    >
+                      {item.name} x{item.quantity} - $
+                      {(item.quantity * item.unitPrice).toFixed(2)}
+                    </Txt>
                   </li>
                 ))}
               </ul>

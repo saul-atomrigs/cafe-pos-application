@@ -1,6 +1,7 @@
 import { List, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
 import type { CartItem } from '../context';
+import OrderAmountInput from './order-amount-input';
 
 export function CartList({ items }: { items: CartItem[] }) {
   if (items.length === 0) {
@@ -25,6 +26,7 @@ export function CartList({ items }: { items: CartItem[] }) {
               <Txt style={{ color: '#666' }}>{quantity}개</Txt>
               <Txt style={{ fontWeight: 500 }}>{krw(price * quantity)}</Txt>
             </div>
+            <OrderAmountInput item={item} />
           </div>
         );
       })}

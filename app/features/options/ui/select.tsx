@@ -28,8 +28,6 @@ export const OptionSelection = ({
     <>
       {optionGroups.map(({ name: groupName, exclusive, options }) => (
         <Box key={groupName}>
-          <Txt>{groupName}</Txt>
-
           <div className='options-select'>
             {options.map(({ name: optionName, price }) => (
               <Box

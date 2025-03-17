@@ -4,23 +4,44 @@ import type { MenuItem } from '~/remotes';
 
 const DEFAULT_QUANTITY = 1;
 
-export default function OrderAmountInput({ item }: { item: MenuItem }) {
+export default function OrderAmountInput({
+  item,
+  value,
+  onChange,
+}: {
+  item: MenuItem;
+  value?: number;
+  onChange?: (quantity: number) => void;
+}) {
   const { cartItems, addToCart, updateQuantity } = useCartContext();
   const cartItem = cartItems.find((cartItem) => cartItem.item.id === item.id);
 
-  const amount = cartItem ? cartItem.quantity : DEFAULT_QUANTITY;
+  const amount =
+    value !== undefined
+      ? value
+      : cartItem
+      ? cartItem.quantity
+      : DEFAULT_QUANTITY;
 
   const handleIncrement = () => {
-    if (amount === 0) {
+    const newAmount = amount + 1;
+    if (onChange) {
+      onChange(newAmount);
+    } else if (amount === 0) {
       addToCart(item, DEFAULT_QUANTITY);
     } else {
-      updateQuantity(item.id, amount + DEFAULT_QUANTITY);
+      updateQuantity(item.id, newAmount);
     }
   };
 
   const handleDecrement = () => {
-    if (amount > 0) {
-      updateQuantity(item.id, amount - DEFAULT_QUANTITY);
+    if (amount > 1) {
+      const newAmount = amount - 1;
+      if (onChange) {
+        onChange(newAmount);
+      } else {
+        updateQuantity(item.id, newAmount);
+      }
     }
   };
   return (

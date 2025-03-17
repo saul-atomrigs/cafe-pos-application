@@ -1,20 +1,31 @@
 import { Box, CTAButton, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
 import OrderAmountInput from '~/features/cart/ui/order-amount-input';
 import { useOptionsManagement } from '../hooks';
 import '../styles.css';
 import OptionsFallback from './fallback';
 import { OptionSelection } from './select';
+import { useCartContext } from '~/features/cart/context';
 
 export default function OptionsPage() {
   const { menuItem, selectedOptions, toggleOption, totalItemPrice } =
     useOptionsManagement();
   const navigate = useNavigate();
+  const { addToCart } = useCartContext();
+  const [quantity, setQuantity] = useState(1);
 
   if (!menuItem) return <OptionsFallback />;
 
   const { name, price, description, option } = menuItem;
+
+  const handleAddToCart = () => {
+    if (menuItem) {
+      addToCart(menuItem, quantity);
+      navigate(-1);
+    }
+  };
 
   return (
     <>
@@ -30,9 +41,13 @@ export default function OptionsPage() {
           총 금액
         </Txt>
         <Txt size='lg' weight='bold'>
-          {krw(totalItemPrice)}
+          {krw(totalItemPrice * quantity)}
         </Txt>
-        <OrderAmountInput item={menuItem} />
+        <OrderAmountInput
+          item={menuItem}
+          value={quantity}
+          onChange={setQuantity}
+        />
       </Box>
 
       <Box>
@@ -46,7 +61,7 @@ export default function OptionsPage() {
         />
       </Box>
 
-      <CTAButton onClick={() => navigate(-1)}>주문 담기</CTAButton>
+      <CTAButton onClick={handleAddToCart}>주문 담기</CTAButton>
     </>
   );
 }

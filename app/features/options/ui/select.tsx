@@ -26,19 +26,17 @@ export const OptionSelection = ({
 
   return (
     <>
-      {optionGroups.map((group) => (
-        <Box key={group.name}>
-          <Txt>{group.name}</Txt>
+      {optionGroups.map(({ name: groupName, exclusive, options }) => (
+        <Box key={groupName}>
+          <Txt>{groupName}</Txt>
 
           <div className='options-select'>
-            {group.options.map((option) => (
+            {options.map(({ name: optionName, price }) => (
               <Box
-                key={option.name}
-                onClick={() =>
-                  onToggleOption(group.name, option.name, group.exclusive)
-                }
+                key={optionName}
+                onClick={() => onToggleOption(groupName, optionName, exclusive)}
                 style={{
-                  backgroundColor: selectedOptions.has(option.name)
+                  backgroundColor: selectedOptions.has(optionName)
                     ? '#f0f0f0'
                     : 'transparent',
                   padding: '8px',
@@ -49,8 +47,8 @@ export const OptionSelection = ({
                   alignItems: 'center',
                 }}
               >
-                <Txt>{option.name}</Txt>
-                {option.price && <Txt>{krw(option.price)}</Txt>}
+                <Txt>{optionName}</Txt>
+                {price && <Txt>{krw(price)}</Txt>}
               </Box>
             ))}
           </div>

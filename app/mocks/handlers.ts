@@ -93,8 +93,8 @@ export const handlers = [
       );
     }
 
-    const pointsData = getPoints(phone);
-    return HttpResponse.json(pointsData, { status: 200 });
+    const Points = getPoints(phone);
+    return HttpResponse.json(Points, { status: 200 });
   }),
 
   // Get receipt for specific order

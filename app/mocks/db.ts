@@ -1,4 +1,4 @@
-import type { MenuItem, Order, Points } from './types';
+import type { MenuItem, Order, Points } from '../remotes';
 import { LiveStorage } from '@mswjs/storage';
 import { nanoid } from 'nanoid';
 

@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router';
-import { useMenuItemContext } from '../menu/context';
-import type { MenuItem } from '~/mocks/types';
+import type { MenuItem } from '~/remotes';
 
 export function useOptions(menuItem: MenuItem) {
   const [selectedOptions, setSelectedOptions] = useState<Set<string>>(

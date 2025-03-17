@@ -38,21 +38,23 @@ export interface OrderRequestData {
   customerPhone?: string;
 }
 
+export type Order = {
+  id: string;
+  items: OrderItem[];
+  totalAmount: number;
+  pointsEarned: number;
+  pointsUsed: number;
+  timestamp: string;
+  customerPhone?: string;
+};
+
 export interface OrderResponseData {
   success: boolean;
-  order: {
-    id: string;
-    items: OrderItem[];
-    totalAmount: number;
-    pointsEarned: number;
-    pointsUsed?: number;
-    customerPhone?: string;
-    timestamp: string;
-  };
+  order: Order;
   message: string;
 }
 
-export interface PointsData {
+export interface Points {
   points: number;
   phone: string;
 }
@@ -91,8 +93,8 @@ export const getOrdersAPI = async () => {
   return response.data;
 };
 
-export const getPointsAPI = async (phone: string): Promise<PointsData> => {
-  const response = await api.get<PointsData>(`/points`, {
+export const getPointsAPI = async (phone: string): Promise<Points> => {
+  const response = await api.get<Points>(`/points`, {
     params: { phone },
   });
   return response.data;

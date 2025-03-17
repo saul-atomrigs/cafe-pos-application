@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router';
 import { Box, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
-import OrderAmountInput from '~/features/cart/ui/order-amount-input';
 import type { MenuItem } from '~/remotes';
 import { ROUTES } from '~/routes';
 import '../styles.css';
@@ -29,9 +28,6 @@ export function Item({ item }: { item: MenuItem }) {
               {name}
             </Txt>
             <Txt size='base'>{krw(price)}</Txt>
-          </div>
-          <div className='menuItem__amountControl'>
-            <OrderAmountInput item={item} />
           </div>
         </div>
       </div>

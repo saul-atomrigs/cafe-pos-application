@@ -1,11 +1,11 @@
-import { Button } from '@saul-atomrigs/design-system';
 import { useNavigate } from 'react-router';
+import { useOrderContext } from '~/features/order/context';
+import { PointsModal } from '~/features/points/ui/modal';
 import { ROUTES } from '~/routes';
 import { useCartContext } from '../context';
 import { useCart } from '../hooks';
 import { CartList } from './list';
 import { CartTotal } from './total';
-import { useOrderContext } from '~/features/order/context';
 
 export const CartContent = () => {
   const { cartItems } = useCartContext();
@@ -31,9 +31,7 @@ export const CartContent = () => {
         {orderType}
       </div>
       <div className='cart-action'>
-        <Button onClick={handleClickOrder} disabled={cartItems.length === 0}>
-          주문 완료하기
-        </Button>
+        <PointsModal onConfirm={handleClickOrder} />
       </div>
     </div>
   );

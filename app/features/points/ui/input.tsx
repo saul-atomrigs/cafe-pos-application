@@ -1,16 +1,16 @@
 import { useState, type ChangeEventHandler } from 'react';
-import { TextInput, Txt } from '@saul-atomrigs/design-system';
+import { Modal, TextInput, Txt } from '@saul-atomrigs/design-system';
 import { useCartContext } from '~/features/cart/context';
 import { PHONE_NUMBER_LENGTH, PHONE_REGEX } from '../constants';
 
 export function PointsInput() {
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [phone, setPhone] = useState('');
   const { updateCustomerPhone } = useCartContext();
 
   const handlePhoneChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const value = e.target.value;
     if (PHONE_REGEX.test(value) && value.length <= PHONE_NUMBER_LENGTH) {
-      setPhoneNumber(value);
+      setPhone(value);
       updateCustomerPhone(value || undefined);
     }
   };
@@ -18,14 +18,14 @@ export function PointsInput() {
   return (
     <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
       <Txt style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>
-        포인트 적립
+        포인트 적립할 전화번호를 입력해주세요
       </Txt>
       <TextInput
-        name='포인트'
-        placeholder='전화번호 입력 (포인트 적립)'
-        value={phoneNumber}
+        name='phone'
+        value={phone}
         onChange={handlePhoneChange}
-        style={{ width: '100%' }}
+        placeholder='- 없이 입력해주세요'
+        type='text'
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import { Box, CTAButton, Txt } from '@saul-atomrigs/design-system';
+import { Box, CTAButton, List, Txt } from '@saul-atomrigs/design-system';
 import { krw } from '@saul-atomrigs/hangeul';
 import { useNavigate, useParams } from 'react-router';
 import { useState } from 'react';
@@ -58,17 +58,18 @@ export default function OptionsPage() {
         />
       </Box>
 
-      <Box>
-        <Txt size='lg' weight='bold'>
-          옵션 선택
-        </Txt>
-        <OptionSelection
-          optionGroups={optionGroups}
-          selectedOptions={selectedOptions}
-          onToggleOption={toggleOption}
-        />
-      </Box>
-
+      <div className='container'>
+        <List direction='vertical'>
+          <Txt size='lg' weight='bold'>
+            옵션 선택
+          </Txt>
+          <OptionSelection
+            optionGroups={optionGroups}
+            selectedOptions={selectedOptions}
+            onToggleOption={toggleOption}
+          />
+        </List>
+      </div>
       <CTAButton onClick={handleAddToCart}>주문 담기</CTAButton>
     </>
   );

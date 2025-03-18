@@ -48,13 +48,13 @@ export type Order = {
   pointsUsed: number;
   timestamp: string;
   customerPhone?: string;
+  orderType: OrderType;
 };
 
 export interface OrderResponseData {
   success: boolean;
   order: Order;
   message: string;
-  orderType: 'in-store' | 'take-out';
 }
 
 export interface Points {

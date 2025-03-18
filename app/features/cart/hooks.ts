@@ -1,10 +1,12 @@
 import type { OrderResponseData } from '~/remotes';
 import { useOrder } from '../order/hooks';
 import { useCartContext } from './context';
+import { useOrderContext } from '../order/context';
 
 export const useCart = () => {
   const { cartItems, orderItems, cartTotalAmount, clearCart } =
     useCartContext();
+  const { orderType } = useOrderContext();
   const { mutateAsync: createOrder } = useOrder();
 
   const handleOrder = async (): Promise<OrderResponseData> => {
@@ -17,6 +19,7 @@ export const useCart = () => {
       totalAmount: cartTotalAmount,
       pointsUsed: 0,
       customerPhone: undefined,
+      orderType,
     };
 
     const result = await createOrder(orderData);

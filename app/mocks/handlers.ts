@@ -20,6 +20,9 @@ const orderSchema = z.object({
   totalAmount: z.number().nonnegative(),
   pointsUsed: z.number().nonnegative().default(0),
   customerPhone: z.string().optional(),
+  orderType: z
+    .string()
+    .refine((value) => value === 'in-store' || value === 'take-out'),
 });
 
 export const handlers = [

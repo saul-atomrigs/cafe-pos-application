@@ -17,12 +17,14 @@ export function OrdersList() {
           pointsUsed,
           pointsEarned,
           items,
+          orderType,
         }) => (
           <Box key={orderId}>
             <List direction='horizontal'>
               <Txt weight='bold' size='lg'>
                 주문번호: {orderId}
               </Txt>
+              {orderType}
               <Txt color='#6b7280'>
                 {format(new Date(timestamp), 'MMM dd, yyyy HH:mm')}
               </Txt>

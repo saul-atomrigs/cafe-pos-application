@@ -33,14 +33,10 @@ export function useOptions(menuItem: MenuItem) {
   };
 
   const optionPrice =
-    menuItem?.optionGroups?.reduce((sum, group) => {
-      return group.options.reduce((groupSum, option) => {
-        if (selectedOptions.has(option.name) && option.price) {
-          return groupSum + option.price;
-        }
-        return groupSum;
-      }, sum);
-    }, 0) || 0;
+    menuItem?.optionGroups
+      ?.flatMap((group) => group.options)
+      .filter((option) => selectedOptions.has(option.name) && option.price)
+      .reduce((sum, option) => sum + (option.price || 0), 0) || 0;
 
   const totalItemPrice = menuItem ? menuItem.price + optionPrice : 0;
 

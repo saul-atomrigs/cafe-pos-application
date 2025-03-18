@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { initMockAPI } from '.';
-import { Loading } from '~/components/Loading';
+import { Loading } from '@saul-atomrigs/design-system';
 
 interface MockContextType {
   isMockReady: boolean;
@@ -20,7 +20,7 @@ export function MockProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   if (!isMockReady) {
-    return <Loading message="데이터 불러오는 중..." />;
+    return <Loading message='데이터 불러오는 중...' />;
   }
 
   return (

@@ -4,7 +4,7 @@ import { useCartContext } from './context';
 import { useOrderContext } from '../order/context';
 
 export const useCart = () => {
-  const { cartItems, orderItems, cartTotalAmount, clearCart } =
+  const { cartItems, orderItems, cartTotalAmount, clearCart, customerPhone } =
     useCartContext();
   const { orderType } = useOrderContext();
   const { mutateAsync: createOrder } = useOrder();
@@ -18,7 +18,7 @@ export const useCart = () => {
       items: orderItems,
       totalAmount: cartTotalAmount,
       pointsUsed: 0,
-      customerPhone: undefined,
+      customerPhone: customerPhone || '',
       orderType,
     };
 

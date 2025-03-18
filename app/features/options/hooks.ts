@@ -2,7 +2,9 @@ import { useState } from 'react';
 import type { MenuItem } from '~/remotes';
 
 export function useOptions(menuItem: MenuItem) {
-  const [selectedOptions, setSelectedOptions] = useState(new Set());
+  const [selectedOptions, setSelectedOptions] = useState<Set<string>>(
+    new Set()
+  );
 
   const toggleOption = (
     groupName: string,

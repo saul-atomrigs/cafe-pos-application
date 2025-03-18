@@ -9,7 +9,7 @@ export const PointsModal = ({ onConfirm }: PointsModalProps) => {
   return (
     <Modal.Provider title='포인트 적용'>
       <Modal.Trigger>
-        <Button>포인트 사용</Button>
+        <Button>주문하기</Button>
       </Modal.Trigger>
       <Modal.Content>
         <PointsInput />

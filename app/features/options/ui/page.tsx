@@ -37,13 +37,14 @@ export default function OptionsPage() {
 
   return (
     <>
-      <Box>
-        <Txt size='xl' weight='bold'>
-          {name}
-        </Txt>
-        {description && <Txt color='gray'>{description}</Txt>}
-        <Txt size='lg'>{krw(price)}</Txt>
-      </Box>
+      <div className='container'>
+        <List direction='vertical'>
+          <Txt size='xl' weight='bold'>
+            {name}
+          </Txt>
+          {description && <Txt color='gray'>{description}</Txt>}
+        </List>
+      </div>
       <Box style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Txt size='lg' weight='bold'>
           총 금액

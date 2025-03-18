@@ -17,9 +17,7 @@ export function PointsInput() {
 
   return (
     <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-      <Txt style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>
-        포인트 적립할 전화번호를 입력해주세요
-      </Txt>
+      <Txt>포인트 적립할 전화번호를 입력해주세요</Txt>
       <TextInput
         name='phone'
         value={phone}

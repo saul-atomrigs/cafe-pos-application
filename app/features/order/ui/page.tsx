@@ -15,8 +15,8 @@ export default function OrdersPage() {
         주문 내역
       </Txt>
       <OrdersList />
-      <CTAButton onClick={() => navigate(ROUTES.MENU)}>
-        메뉴로 돌아가기
+      <CTAButton onClick={() => navigate(ROUTES.START)}>
+        처음으로 돌아가기
       </CTAButton>
     </AsyncBoundary>
   );

@@ -5,12 +5,14 @@ import { useCartContext } from '../context';
 import { useCart } from '../hooks';
 import { CartList } from './list';
 import { CartTotal } from './total';
+import { useOrderContext } from '~/features/order/context';
 
 export const CartContent = () => {
   const { cartItems } = useCartContext();
   const { handleOrder } = useCart();
   const navigate = useNavigate();
 
+  const { orderType } = useOrderContext();
   const handleClickOrder = async () => {
     const result = await handleOrder();
 
@@ -26,6 +28,7 @@ export const CartContent = () => {
       <div className='cart-details'>
         <CartList items={cartItems} />
         <CartTotal />
+        {orderType}
       </div>
       <div className='cart-action'>
         <Button onClick={handleClickOrder} disabled={cartItems.length === 0}>

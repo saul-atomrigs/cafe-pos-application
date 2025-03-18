@@ -31,11 +31,13 @@ export interface OrderItem {
   unitPrice: number;
 }
 
+export type OrderType = 'in-store' | 'take-out';
 export interface OrderRequestData {
   items: OrderItem[];
   totalAmount: number;
   pointsUsed?: number;
   customerPhone?: string;
+  orderType: OrderType;
 }
 
 export type Order = {
@@ -52,6 +54,7 @@ export interface OrderResponseData {
   success: boolean;
   order: Order;
   message: string;
+  orderType: 'in-store' | 'take-out';
 }
 
 export interface Points {

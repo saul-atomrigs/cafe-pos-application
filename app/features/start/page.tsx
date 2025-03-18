@@ -1,10 +1,28 @@
-import { CTAButton, Error, Loading, Txt } from '@saul-atomrigs/design-system';
+import {
+  Button,
+  DualCTAButton,
+  Error,
+  Loading,
+  Txt,
+} from '@saul-atomrigs/design-system';
 import { AsyncBoundary } from '@toss/async-boundary';
 import { useNavigate } from 'react-router';
 import { ROUTES } from '~/routes';
+import { useOrderContext } from '../order/context';
 
 export default function StartPage() {
   const navigate = useNavigate();
+  const { setOrderType } = useOrderContext();
+
+  const handleClickInStore = () => {
+    setOrderType('in-store');
+    navigate(ROUTES.MENU);
+  };
+
+  const handleClickTakeOut = () => {
+    setOrderType('take-out');
+    navigate(ROUTES.MENU);
+  };
 
   return (
     <AsyncBoundary
@@ -18,9 +36,10 @@ export default function StartPage() {
           POS에 오신걸 환영합니다
         </Txt>
 
-        <CTAButton onClick={() => navigate(ROUTES.MENU)}>
-          메뉴로 이동하기
-        </CTAButton>
+        <DualCTAButton>
+          <Button onClick={handleClickInStore}>매장(다회용컵)</Button>
+          <Button onClick={handleClickTakeOut}>포장(일회용컵)</Button>
+        </DualCTAButton>
       </div>
     </AsyncBoundary>
   );

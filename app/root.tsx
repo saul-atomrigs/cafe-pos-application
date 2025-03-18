@@ -13,6 +13,7 @@ import { MockProvider } from './mocks/context';
 import { CartProvider } from '~/features/cart/context';
 import './app.css';
 import { MenuProvider } from './features/menu/context';
+import { OrderProvider } from './features/order/context';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -58,11 +59,13 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <MockProvider>
-        <MenuProvider>
-          <CartProvider>
-            <Outlet />
-          </CartProvider>
-        </MenuProvider>
+        <OrderProvider>
+          <MenuProvider>
+            <CartProvider>
+              <Outlet />
+            </CartProvider>
+          </MenuProvider>
+        </OrderProvider>
       </MockProvider>
     </QueryClientProvider>
   );
